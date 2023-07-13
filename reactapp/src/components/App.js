@@ -33,26 +33,55 @@ const App = () => {
   };
 
   const handleDelete = () => {
-    setOutput(output.slice(0, -1));
+    if (!symbol && firstOperand) {
+      setOutput(output.toString().slice(0, -1));
+      setFristOperand(output.toString().slice(0, -1));
+      return;
+    }
+    if (symbol && secondOperand) {
+      setOutput(output.toString().slice(0, -1));
+      setSecondOperand(output.toString().slice(0, -1));
+      return;
+    }
   };
 
   const handleEquals = () => {
     switch (symbol) {
       case "+":
-        setOutput(parseFloat(firstOperand) + parseFloat(secondOperand));
+        const additionResult =
+          parseFloat(firstOperand) + parseFloat(secondOperand);
+        setOutput(additionResult);
+        setFristOperand(additionResult);
+        setSecondOperand("");
+        setSymbol("");
         break;
       case "-":
-        setOutput(parseFloat(firstOperand) - parseFloat(secondOperand));
+        const subtractionResult =
+          parseFloat(firstOperand) - parseFloat(secondOperand);
+        setOutput(subtractionResult);
+        setFristOperand(subtractionResult);
+        setSecondOperand("");
+        setSymbol("");
         break;
       case "*":
-        setOutput(parseFloat(firstOperand) * parseFloat(secondOperand));
+        const multiplicationResult =
+          parseFloat(firstOperand) * parseFloat(secondOperand);
+        setOutput(multiplicationResult);
+        setFristOperand(multiplicationResult);
+        setSecondOperand("");
+        setSymbol("");
         break;
       case "/":
         if (secondOperand === "0") {
           setOutput("Error");
           break;
         }
-        setOutput(parseFloat(firstOperand) / parseFloat(secondOperand));
+        const divisionResult =
+          parseFloat(firstOperand) / parseFloat(secondOperand);
+        setOutput(divisionResult);
+        setFristOperand(divisionResult);
+        setSecondOperand("");
+        setSymbol("");
         break;
       default:
         setOutput("Error");
