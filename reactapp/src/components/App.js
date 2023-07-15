@@ -17,10 +17,9 @@ const App = () => {
   };
 
   const handleSymbol = (value) => {
-    if (!symbol) {
-      setSymbol(value);
-      setOutput("");
-    }
+    if (secondOperand) setSecondOperand("");
+    setSymbol(value);
+    setOutput("");
   };
 
   const handleDot = () => {
@@ -52,24 +51,18 @@ const App = () => {
           parseFloat(firstOperand) + parseFloat(secondOperand);
         setOutput(additionResult);
         setFristOperand(additionResult);
-        setSecondOperand("");
-        setSymbol("");
         break;
       case "-":
         const subtractionResult =
           parseFloat(firstOperand) - parseFloat(secondOperand);
         setOutput(subtractionResult);
         setFristOperand(subtractionResult);
-        setSecondOperand("");
-        setSymbol("");
         break;
       case "*":
         const multiplicationResult =
           parseFloat(firstOperand) * parseFloat(secondOperand);
         setOutput(multiplicationResult);
         setFristOperand(multiplicationResult);
-        setSecondOperand("");
-        setSymbol("");
         break;
       case "/":
         if (secondOperand === "0") {
@@ -80,8 +73,6 @@ const App = () => {
           parseFloat(firstOperand) / parseFloat(secondOperand);
         setOutput(divisionResult);
         setFristOperand(divisionResult);
-        setSecondOperand("");
-        setSymbol("");
         break;
       default:
         setOutput("Error");
